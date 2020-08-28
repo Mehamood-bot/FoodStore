@@ -1,0 +1,21 @@
+import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+
+    constructor(private el: ElementRef,
+        private renderer: Renderer2) { }
+
+    //render just like jquery whne mouse on higlight class to use, or can use hover on class , eample taken to about diective 
+    @HostListener('mouseenter') onMouseEnter() {
+        this.renderer.addClass(this.el.nativeElement, 'highlight');
+    }
+
+    @HostListener('mouseleave') onMouseLeave() {
+        this.renderer.removeClass(this.el.nativeElement, 'highlight');
+    }
+
+
+}

@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* import angular material clases, now we can use class=primary */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+/*reset*/
+body{
+  padding:0;
+  margin:0;
+  font-family:Roboto, 'Segoe UI'; 
+}
+
+.container{
+  margin:20px;
+  display:flex;
+}
+
+.background-primary {
+  background-color: #512da8 !important;
+}
+
+.background-accent {
+  background-color: #ffc107 !important;
+}
+
+.text-floral-white {
+  color: floralwhite !important;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.highlight {
+  background-color: purple;
+  border: 1px solid grey;
+  z-index: 1;
+  transform: scale(1.01);
+}

@@ -1,0 +1,43 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+  <!--Menu Heading-->
+  <div fxFlex fxLayout="row">
+    <div fxFlex="50">
+      <h3>Menu</h3>
+    </div>
+    <div fxFlex="50" fxLayoutAlign="end center">
+      <a mat-button [ngClass]="{'active': !active}" (click)="activateClass()"><mat-icon>list</mat-icon></a>
+      <a mat-button [ngClass]="{'active': active}" (click)="activateClass()"><mat-icon>grid_on</mat-icon></a>
+    </div>
+  </div>
+  <div fxFlex>
+    <hr />
+  </div>
+
+  <!--grid way-->
+  <div fxFlex *ngIf="active && dishes" [@expand]>
+    <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetails',dish.id]" appHighlight>
+        <img style="height:200px" src="{{BaseURL + dish.image}}" alt={{dish.name}} />
+        <mat-grid-tile-footer><h1>{{dish.name | uppercase}}</h1></mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <!--list way-->
+  <mat-list fxFlex *ngIf="!active && dishes" [@expand]>
+    <mat-list-item *ngFor="let dish of dishes" [routerLink]="['/dishdetails',dish.id]" appHighlight>
+      <img matListAvatar src="{{BaseURL + dish.image}}" alt={{dish.name}} /> <!-- for image -->
+      <h1 matLine>{{dish.name}}</h1>
+      <p matLine><span>{{dish.description}}</span></p>
+    </mat-list-item>
+  </mat-list>
+  <div [hidden]="dishes || errMess">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  <div fxFlex *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+
+</div>
